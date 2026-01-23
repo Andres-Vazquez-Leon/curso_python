@@ -1,21 +1,44 @@
 '''Andres Manuel Vazquez Leon
 '''
 def display_board(dboard:dict)->None:
-   """Display board game based of toctactoe"""
-   d = display_board
-   print(f"{d[0]:2s}|{d[1]:2s}|{d[2]:2s}")
+   """Display board game based of toctactoe
+   """
+   d = dboard
+   print(f" {d[0]:2s}| {d[1]:2s}| {d[2]:2s}")
    print("---+---+---+")
-   print(f"{d[3]:2s}|{d[4]:2s}|{d[5]:2s}")
+   print(f" {d[3]:2s}| {d[4]:2s}| {d[5]:2s}")
    print("---+---+---+")
-   print(f"{d[6]:2s}|{d[7]:2s}|{d[8]:2s}")
+   print(f" {d[6]:2s}| {d[7]:2s}| {d[8]:2s}")
    print("---+---+---+")
 
-def player_turn(payer:str, dboard:dict)->int:
+def player_turn(player:str, dboard:dict)->bool:
    """Ask player for their turn"""
+   valid_move = False
+   user_input = input(f"PLayer {player}, enter your move (0-8)")
+   user_input = int(user_input)
+   print(f"Value entered: {user_input} type: {type(user_input)}")
+   if user_input in dboard.keys():
+      if dboard[user_input] not in ['X', 'O']:
+         dboard[user_input] = player
+         valid_move = True
+      else:
+         print("Invalid move : Cell already occupied")
+   print("Invalid move: cell does not exist")
+
 
 if __name__ == "__main__":
    board = {x:str(x) for x in range(9)}
    display_board(board)
-   board[0] = 'X'
-   board[4] = '0'
+   move = player_turn('X', board)
+   print(f"Move valid: {move}")
    display_board(board)
+
+   move = player_turn('O', board)
+   print(f"Move valid: {move}")
+   display_board(board)
+
+   #player_turn('X', board)
+   #print(board)
+   #board[0] = 'X'
+   #board[4] = '0'
+   #display_board(board)
