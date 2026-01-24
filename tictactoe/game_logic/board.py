@@ -14,7 +14,7 @@ def display_board(dboard:dict)->None:
 def player_turn(player:str, dboard:dict)->bool:
    """Ask player for their turn"""
    valid_move = False
-   user_input = input(f"PLayer {player}, enter your move (0-8)")
+   user_input = input(f"Player {player}, enter your move (0-8)")
    user_input = int(user_input)
    print(f"Value entered: {user_input} type: {type(user_input)}")
    if user_input in dboard.keys():
@@ -23,12 +23,15 @@ def player_turn(player:str, dboard:dict)->bool:
          valid_move = True
       else:
          print("Invalid move : Cell already occupied")
-   print("Invalid move: cell does not exist")
+   else:      
+      print("Invalid move: cell does not exist")
+   return valid_move
 
 
 if __name__ == "__main__":
    board = {x:str(x) for x in range(9)}
    display_board(board)
+   
    move = player_turn('X', board)
    print(f"Move valid: {move}")
    display_board(board)
