@@ -25,15 +25,35 @@ def game():
     x_player = 'X'
     O_player = 'O'
     current_player = x_player
-    while turns < 9: # ejecuta el coidgo mientra sea menor a 9
+    winner = False
+    w_player = ""
+    while turns < 9 and not winner: # ejecuta el coidgo mientra sea menor a 9
         board.display_board(dboard)
         valid_move = False
         while not valid_move:
             valid_move = board.player_turn (current_player, dboard)
+            #check_winner(dboard, combo_list)
+
+            """if check_winner(dboard, combo_list) == True:
+                print("ganaste")
+                turns = 8
+                board.display_board(dboard)"""
+
         turns += 1 
+        winner = check_winner(dboard, combo_list)
+        if winner:
+            print(f"Player {current_player} wins!")
         if current_player == x_player:
             current_player = O_player
         else: current_player = x_player
+    board.display_board(dboard)
+    if winner:
+        print(f"winner: Player {w_player}")
+    else:
+        print("It's a tie")
+
+
+
 
 if __name__ == "__main__":
     game()
