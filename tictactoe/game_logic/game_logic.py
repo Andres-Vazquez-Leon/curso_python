@@ -49,6 +49,25 @@ def game()->str:
         else: current_player = x_player
     board.display_board(dboard)
     return w_player
+
+
+
+def two_players():
+    playing = True
+    score = {'X':0, 'O':0, 'Ties':0}
+    while playing:
+        #print(f"Score: X = {score['X']}, O = {score['O']}, Ties = {score['Ties']}")
+        winner = game()
+        if len(winner) > 0:
+            print(f"Winner: Player {winner}")
+        else:
+            print("It's A tie")
+            winner = 'Ties'
+        score[winner] += 1
+        replay = input("do you want to play again (y/n): ").strip().lower
+        if replay != 'y':
+            playing = False
+    print(f"Score: X = {score['X']}, O = {score['O']}, Ties = {score['Ties']}")
     #if winner:
     #    print(f"winner: Player {w_player}")
     #else:
