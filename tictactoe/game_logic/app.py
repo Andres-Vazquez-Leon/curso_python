@@ -2,18 +2,17 @@
 TicTacToe Game
 Author: Andrés Manuel Vazquez León
 """
-from game_logic import game
+#from game_logic import game
 from menu import display_menu
-from game_logic import two_players
+from game_logic import play_game
 
 def main():
     while True:
         choice = display_menu()
         if choice == 1 :
-            print("One Player Game is not implemented yet")
-            #here you woul call one player game function when implement
+            play_game(1) #play vs computer
         elif choice == 2:
-            two_players()
+            play_game(2)
         elif choice == 3:
             print("Exiting the game: Goodbye!")
             break
