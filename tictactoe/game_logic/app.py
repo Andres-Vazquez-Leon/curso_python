@@ -12,7 +12,7 @@ def main():
         if choice == 1 :
             play_game(1) #play vs computer
         elif choice == 2:
-            play_game(2)
+            play_game
         elif choice == 3:
             print("Exiting the game: Goodbye!")
             break
