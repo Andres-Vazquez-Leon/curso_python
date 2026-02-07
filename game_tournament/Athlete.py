@@ -10,7 +10,7 @@ class Athlete:
     def __repr__(self):
         """ Official string representation"""
         return f"Athlete(name ='{self.name}', number = {self.number})"
-    def set_number(self, name):
+    def set_number(self, number):
         """ Set the athlete's number."""
         self.number = number
 
