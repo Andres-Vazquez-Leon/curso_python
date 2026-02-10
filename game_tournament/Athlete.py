@@ -14,6 +14,12 @@ class Athlete:
         """ Set the athlete's number."""
         self.number = number
 
+    def to_json(self):
+        """"Generate jspn of athlete"""
+        return {
+            "name":self.name, 
+            "number": self.number}
+
 if __name__ == "__main__":
     #Example usaege
     athlete1 = Athlete("Lionel Messi")
