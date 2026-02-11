@@ -1,10 +1,26 @@
 class Sport:
     """Sport class represents a sport in the pturnament. It has name and league"""
+
+    max_score = {
+        "Futbol" : 5,
+        "Basketball" : 130,
+        "Futbol Americano" : 60,
+        "Baseball" : 20,
+        "Hockey" : 10
+        }
+    
     def __init__(self, name, num_players, league):
         """Custom constructor for Sport class. """
-        self.name = name
+        self.add_name(name)
         self.league = league
         self.num_players = num_players
+       
+
+    def add_name(self, name):
+        if name in self.max_score:
+            self.name = name
+        else:
+            raise ValueError(f"Sport name must be one of the followong: {', '.join(self.max_score())}")
     
     def __str__(self):
         """String representation of the Sport class"""
@@ -24,5 +40,6 @@ if __name__ == "__main__":
     print(sport)
     print(sport.to_json())
     print(repr(sport))
+    
 
         
