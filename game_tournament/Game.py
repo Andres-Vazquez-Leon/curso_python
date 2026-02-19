@@ -7,7 +7,7 @@ from Sport import Sport
 from Athlete import Athlete 
 
 class Game:
-    """Game class represents a game in the tpurnament. It has two """ #
+    """Game class represents a game in the tpurnament. It has two teams and a score""" 
 
     def __init__(self, A:Team, B:Team):
         """Custom constructo for Game class."""
@@ -38,19 +38,40 @@ class Game:
 
     def __str__(self):
         """String representation of the Game class."""
-        return f"{self.team_a.name} vs {self.team_b.name} - Score: {self.score[self.team_a.name]: {self.score[self.team_b.name]}}" 
+        a = self.score[self.team_a.name]
+        b = self.score[self.team_b.name]
+        return f"{self.team_a.name} vs {self.team_b.name} - Score: {a}:{b}" 
     def __repr__(self):
         """String representation of the Game class"""
         return f"Game(team_a={repr(self.team_a)}, team_b={repr(self.team_b)}, score={self.score})"
     def to_json(self):
-        """Convert the game objecct to a JSON string"""
+        """Convert the game object to a JSON string"""
         return{
             "team_a": self.team_a.to_json(),
             "team_b": self.team_b.to_json(),
             "score": self.score
         }
         
-        
+def a_game():
+    """ Example usage of the Game class. """
+    players_mex = ['Chicharito', 'Piojo', 'Guardado',
+                   'Hector Moreno',
+                   'Rafa Marquez', 'Salcido', 'Vela', 'Dos Santos', 'Herrera', 'Layun', 'Corona']
+    players_arg = ['Messi', 'Di Maria',
+                   'Aguero', 'Higuain',
+                   'Mascherano',
+                   'Biglia', 'Dybala', 'Paredes', 'Tagliafico', 'Otamendi', 'Zabaleta']
+    sport = Sport("Futbol", 11, "FIFA")
+    team_mex = Team("Mexico", sport)
+    team_arg = Team("Argentina", sport)
+    for player in players_mex:
+        team_mex.add_athlete(Athlete(player))
+    for player in players_arg:
+        team_arg.add_athlete(Athlete(player))
+    game = Game(team_mex, team_arg)
+    game_string = game.to_json()
+    return game_string
+
 def a_tournament():
     """Example usage if the Game class"""
     players_mex = ['Chicharito', 'Piojo', 'Guardado', 'Hector Moreno', 'Rafa Marquez', 'Salcido', 'Vela', 'Dos Santos', 'Herrera', 'Layun', 'Corona']
@@ -94,12 +115,8 @@ def a_tournament():
     json_string = ""
 
     for team in tournament_list:
-        json_string += f"{team.to_json()}\n"
-    json_string = f"{{\n\"tournament\": [\n{json_string[:-2]}]}}"
-
-    game = Game (team_mex, team_arg)
-    game_string = game.to_json()
-    print(game_string)
+        json_string += f"{team.to_json()},\n"
+    json_string = f"[\n{json_string[:-2]}\n]"  # Remove trailing comma and newline
 
     return json_string
 
