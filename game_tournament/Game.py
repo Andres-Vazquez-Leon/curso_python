@@ -112,13 +112,9 @@ def a_tournament():
         team_spain.add_athlete(Athlete(player))
 
     tournament_list = [team_mex, team_arg, team_peru, team_france, team_brazil, team_japan, team_italia, team_spain]
-    json_string = ""
+    # json_string = ""
 
-    for team in tournament_list:
-        json_string += f"{team.to_json()},\n"
-    json_string = f"[\n{json_string[:-2]}\n]"  # Remove trailing comma and newline
-
-    return json_string
+    return [team.to_json() for team in tournament_list]
 
 def save_game_to_json(game_data, filename):
     """Save the game object to a JSON file"""
