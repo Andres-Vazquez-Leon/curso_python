@@ -35,3 +35,14 @@ class Group:
             "name": self.name,
             "teams": [team.to_json() for team in self.teams]
         }
+    def display_group(self):
+        """Display the group"""
+        print(f"Group: {self.name}")
+        for team in self.teams:
+            print(f" {team}")
+
+    def display_group_games(self):
+        """Display the group games"""
+        print(f"Group: {self.name}")
+        for game in self.games:
+            print(f" {game}")
