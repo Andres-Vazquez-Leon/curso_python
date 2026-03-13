@@ -1,0 +1,30 @@
+[
+    {
+        "Clase_id": "1",
+        "Clase_tipo": "Mam\u00c3\u00adfero"
+    },
+    {
+        "Clase_id": "2",
+        "Clase_tipo": "Ave"
+    },
+    {
+        "Clase_id": "3",
+        "Clase_tipo": "Reptil"
+    },
+    {
+        "Clase_id": "4",
+        "Clase_tipo": "Pez"
+    },
+    {
+        "Clase_id": "5",
+        "Clase_tipo": "Anfibio"
+    },
+    {
+        "Clase_id": "6",
+        "Clase_tipo": "Insecto"
+    },
+    {
+        "Clase_id": "7",
+        "Clase_tipo": "Invertebrado"
+    }
+]
