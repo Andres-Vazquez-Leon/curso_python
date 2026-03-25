@@ -1,0 +1,27 @@
+from venv import create
+
+from flask import Flask, render_template, render_template, request
+from Book import Book, load_books
+from book_funtions import get_genres, create_author_dictionary
+
+app = Flask(__name__)
+filenmae = 'booklist2000.csv'
+books = load_books(filenmae)
+author_dict = create_author_dictionary(books)
+
+@app.route('/')
+def index():
+    return render_template('index.html')
+@app.route('/search_by_author', methods=['GET', 'POST'])
+def search_by_author():
+    if request.method == 'POST':
+        author = request.form['author']
+        books_list = author_dict.get(author.lower(), [])
+        return render_template('search_by_author.html', books=books_list)
+    else:
+        return render_template('search_by_author.html', books_list = [])
+    
+
+if __name__ == '__main__':
+    app.run(debug=True)
+
