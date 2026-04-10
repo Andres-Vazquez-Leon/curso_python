@@ -35,10 +35,10 @@ def create_book_dictionary(book_list:list)->dict[str, Book]:
     return book_dict
             
 """Hacer busquenda por titilo o por palabra del titulo"""
-def search_books_by_title(books:list[Book], search_term:str)->list[Book]:
-    title_dict = []
+def create_title_dictionary(books:list[Book])->dict[str, list[Book]]:
+    title_dict = {}
     for book in books:
-        if book.title.lower() in title_dict.lower():
+        if book.title.lower() not in title_dict:
             title_dict[book.title.lower()] = []
         title_dict[book.title.lower()].append(book)
         title_names = book.title.lower().split(" ")
@@ -49,6 +49,20 @@ def search_books_by_title(books:list[Book], search_term:str)->list[Book]:
                 title_dict[name].append(book)
     return title_dict
 
+
+def create_genre_dictionary(books:list[Book])->dict[str, list[Book]]:
+    genre_dict = {}
+    for book in books:
+        if book.genre.lower() not in genre_dict:
+            genre_dict[book.genre.lower()] = []
+        genre_dict[book.genre.lower()].append(book)
+        genre_names = book.genre.lower().split(" ")
+        if len(genre_names) >= 2:
+            for name in genre_names:
+                if name not in genre_dict:
+                    genre_dict[name] = []
+                genre_dict[name].append(book)
+    return genre_dict
 
 if __name__ == "__main__":
     books = load_books("booklist2000.csv")

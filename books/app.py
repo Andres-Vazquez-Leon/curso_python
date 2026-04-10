@@ -1,8 +1,9 @@
+from turtle import title
 from venv import create
 
 from flask import Flask, render_template, render_template, request
 from Book import Book, load_books
-from book_funtions import get_genres, create_author_dictionary
+from book_funtions import create_genre_dictionary, get_genres, create_author_dictionary, create_title_dictionary
 from book_funtions import create_book_dictionary
 
 app = Flask(__name__)
@@ -10,6 +11,8 @@ filename = 'booklist2000.csv'
 books = load_books(filename)
 author_dict = create_author_dictionary(books)
 book_dict= create_book_dictionary(books)
+genre_dict = create_genre_dictionary(books)
+title_dict = create_title_dictionary(books)
 
 @app.route('/')
 def index():
@@ -22,6 +25,25 @@ def search_by_author():
         return render_template('search_by_author.html', books_list=books_list)
     else:
         return render_template('search_by_author.html', books_list = books[:10])
+
+
+@app.route('/search_by_genre', methods=['GET', 'POST'])
+def search_by_genre():
+    if request.method == 'POST':
+        genre = request.form['genre']
+        books_list = genre_dict.get(genre.lower(), [])
+        return render_template('search_by_genre.html', books_list=books_list)
+    else:
+        return render_template('search_by_genre.html', books_list = books[:10])
+
+@app.route('/search_by_title', methods=['GET', 'POST'])
+def search_by_title():
+    if request.method == 'POST':
+        title = request.form['title']
+        books_list = title_dict.get(title.lower(), [])
+        return render_template('search_by_title.html', books_list=books_list)
+    else:
+        return render_template('search_by_title.html', books_list = books[:10])
 
 @app.route('/book/<book_id>')
 def book_detail(book_id):
